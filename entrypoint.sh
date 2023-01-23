@@ -10,7 +10,7 @@ gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=/tmp/key.json -
 IMAGE_LIST=()
 for repository in ${REPOSITORY_LIST}
 do
-    REPOSITORY=${location}-docker.pkg.dev/${PROJECT}/${repository}
+    REPOSITORY=${LOCATION}-docker.pkg.dev/${PROJECT}/${repository}
     IMAGES=$(gcrane ls ${REPOSITORY})
     for image in $IMAGES
     do
