@@ -10,7 +10,7 @@ do
     IMAGES=$(gcrane ls ${REPOSITORY})
     for image in $IMAGES
     do
-        gcrane manifest ${image}:${TAG} >/dev/null 2>&1 && IMAGE_LIST+=(${image})
+        gcrane manifest ${image}:${TAG} >/dev/null 2>&1 && IMAGE_LIST+=(${image}:${TAG})
     done
 done
 echo "matrix=$(jq -Rsc 'split(" ")' <<< ${IMAGE_LIST[@]} | sed 's/\\n//g')"
