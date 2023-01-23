@@ -8,4 +8,4 @@ gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=/tmp/key.json -
 IMAGES=$(gcrane ls ${REPOSITORY})
 echo "$IMAGES"
 my_images=$(jq -n --arg images "$IMAGES" '{"images": $images | split("\n")}')
-echo "images=${my_images}" >> $GITHUB_OUTPUT
+echo "${my_images}" >> $GITHUB_OUTPUT
