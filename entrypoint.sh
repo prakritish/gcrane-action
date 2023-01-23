@@ -1,10 +1,16 @@
 #!/bin/bash
 PROJECT=$1
 REPOSITORY=$2
-JSON_KEY=$3
+TAG=$3
+JSON_KEY=$4
 echo "$JSON_KEY" > /tmp/key.json
 SERVICE_ACCOUNT=$(jq .client_email /tmp/key.json | tr -d '"')
 gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=/tmp/key.json --project=$PROJECT
 IMAGES=$(gcrane ls ${REPOSITORY})
-echo "matrix=$(jq -Rsc 'split("\n")[:-1]' <<< $IMAGES)"
-echo "matrix=$(jq -Rsc 'split("\n")[:-1]' <<< $IMAGES)" >> $GITHUB_OUTPUT
+IMAGE_LIST=()
+for image in $IMAGES
+do
+    gcrane manifest ${image}:${TAG} >/dev/null 2>&1 && IMAGE_LIST+=(${image})
+done
+echo "matrix=$(jq -Rsc 'split(" ")[:-1]' <<< ${IMAGE_LIST[@]})"
+echo "matrix=$(jq -Rsc 'split(" ")[:-1]' <<< ${IMAGE_LIST[@]})" >> $GITHUB_OUTPUT

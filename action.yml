@@ -8,6 +8,9 @@ inputs:
   repository:
     description: "Google Cloud Artifact Repository"
     required: true
+  tag:
+    description: "Image Tag"
+    required: true
   json_key:
     description: "JSON Key for the Service Account"
     required: true
@@ -20,4 +23,5 @@ runs:
   args:
     - ${{ inputs.project }}
     - ${{ inputs.repository }}
+    - ${{ inputs.tag }}
     - ${{ inputs.json_key }}
