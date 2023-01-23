@@ -9,4 +9,5 @@ gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=/tmp/key.json -
 # echo "$IMAGES"
 # my_images=$(jq -n --arg images "$IMAGES" '{"images": $images | split("\n")}')
 IMAGES=$(gcrane ls us-central1-docker.pkg.dev/endor-ci/private --json | jq .child[] | tr "\n" ",")
+echo "images={\"include\":[${IMAGES%,}]}"
 echo "images={\"include\":[${IMAGES%,}]}" >> $GITHUB_OUTPUT
