@@ -12,5 +12,5 @@ for image in $IMAGES
 do
     gcrane manifest ${image}:${TAG} >/dev/null 2>&1 && IMAGE_LIST+=(${image})
 done
-echo "matrix=$(jq -Rsc 'split(" ")[:-1]' <<< ${IMAGE_LIST[@]})"
-echo "matrix=$(jq -Rsc 'split(" ")[:-1]' <<< ${IMAGE_LIST[@]})" >> $GITHUB_OUTPUT
+echo "matrix=$(jq -Rsc 'split(" ")' <<< ${IMAGE_LIST[@]} | sed 's/\\n//g')"
+echo "matrix=$(jq -Rsc 'split(" ")' <<< ${IMAGE_LIST[@]} | sed 's/\\n//g')" >> $GITHUB_OUTPUT
