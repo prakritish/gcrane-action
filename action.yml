@@ -1,0 +1,27 @@
+# action.yml
+name: 'List Images using Crane'
+description: 'Greet someone and record the time'
+inputs:
+  project:  # id of input
+    description: 'GCP Project'
+    required: true
+  repository:
+    description: "Google Cloud Artifact Repository"
+    required: true
+  service_account:
+    description: "Service Account ID"
+    required: true
+  json_key:
+    description: "JSON Key for the Service Account"
+    required: true
+outputs:
+  images: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.project }}
+    - ${{ inputs.repository }}
+    - ${{ inputs.service_account }}
+    - ${{ inputs.json_key }}
