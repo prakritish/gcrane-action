@@ -7,7 +7,7 @@ SERVICE_ACCOUNT=$(jq .client_email /tmp/key.json | tr -d '"')
 gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=/tmp/key.json --project=$PROJECT
 IMAGES=$(gcrane ls ${REPOSITORY})
 echo "$IMAGES"
-my_images=$(jq -c -n --arg images "$IMAGES" '{"images": $images | split("\n")}')
+my_images=$(jq -c -n --arg images "$IMAGES" '{"matrix": $images | split("\n")}')
 # IMAGES=$(gcrane ls us-central1-docker.pkg.dev/endor-ci/private --json | jq .child[] | tr "\n" ",")
-echo "images=$my_images"
-echo "images=$my_images" >> $GITHUB_OUTPUT
+echo "matrix=$my_images"
+echo "matrix=$my_images" >> $GITHUB_OUTPUT
