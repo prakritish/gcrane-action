@@ -1,9 +1,9 @@
 #!/bin/bash
 PROJECT=$1
 REPOSITORY=$2
-SERVICE_ACCOUNT=$3
-JSON_KEY=$4
+JSON_KEY=$3
 echo "$JSON_KEY" > /tmp/key.json
+SERVICE_ACCOUNT=$(jq .client_email /tmp/key.json | tr -d '"')
 gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=/tmp/key.json --project=$PROJECT
 IMAGES=$(gcrane ls ${REPOSITORY})
 echo "images=${IMAGES}" >> $GITHUB_OUTPUT

@@ -8,9 +8,6 @@ inputs:
   repository:
     description: "Google Cloud Artifact Repository"
     required: true
-  service_account:
-    description: "Service Account ID"
-    required: true
   json_key:
     description: "JSON Key for the Service Account"
     required: true
@@ -23,5 +20,4 @@ runs:
   args:
     - ${{ inputs.project }}
     - ${{ inputs.repository }}
-    - ${{ inputs.service_account }}
     - ${{ inputs.json_key }}
