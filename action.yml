@@ -2,11 +2,14 @@
 name: 'List Images using Crane'
 description: 'Greet someone and record the time'
 inputs:
-  project:  # id of input
+  location:
+    description: "GCP Artifact Repository Location"
+    required: true
+  project:
     description: 'GCP Project'
     required: true
-  repository:
-    description: "Google Cloud Artifact Repository"
+  repository_list:
+    description: "Google Cloud Artifact Repository List"
     required: true
   tag:
     description: "Image Tag"
@@ -15,13 +18,14 @@ inputs:
     description: "JSON Key for the Service Account"
     required: true
 outputs:
-  images: # id of output
+  images:
     description: 'The time we greeted you'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.location }}
     - ${{ inputs.project }}
-    - ${{ inputs.repository }}
+    - ${{ inputs.repository_list }}
     - ${{ inputs.tag }}
     - ${{ inputs.json_key }}
