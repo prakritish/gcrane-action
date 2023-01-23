@@ -3,10 +3,6 @@ LOCATION=$1
 PROJECT=$2
 REPOSITORY_LIST=$3
 TAG=$4
-# JSON_KEY=$5
-# echo "$JSON_KEY" > /tmp/key.json
-# SERVICE_ACCOUNT=$(jq .client_email /tmp/key.json | tr -d '"')
-# gcloud auth activate-service-account $SERVICE_ACCOUNT --key-file=/tmp/key.json --project=$PROJECT
 IMAGE_LIST=()
 for repository in ${REPOSITORY_LIST}
 do
