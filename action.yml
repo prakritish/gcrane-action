@@ -1,6 +1,6 @@
 # action.yml
 name: 'List Images using Crane'
-description: 'Greet someone and record the time'
+description: 'List Images using Crane'
 inputs:
   location:
     description: "GCP Artifact Repository Location"
