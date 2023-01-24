@@ -14,9 +14,6 @@ inputs:
   tag:
     description: "Image Tag"
     required: true
-  # json_key:
-  #   description: "JSON Key for the Service Account"
-  #   required: true
 outputs:
   images:
     description: 'The time we greeted you'
@@ -28,4 +25,3 @@ runs:
     - ${{ inputs.project }}
     - ${{ inputs.repository_list }}
     - ${{ inputs.tag }}
-    - ${{ inputs.json_key }}
